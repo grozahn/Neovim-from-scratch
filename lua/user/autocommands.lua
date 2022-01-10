@@ -28,6 +28,18 @@ vim.cmd [[
     autocmd!
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
+
+  augroup _ft
+    autocmd!
+    autocmd FileType lua,lisp,org set ts=2 sw=2
+    autocmd FileType python set colorcolumn=80
+    autocmd FileType c,cpp,make,go,vala set noexpandtab colorcolumn=100
+  augroup end
+
+  augroup _util
+    autocmd!
+    autocmd QuickFixCmdPost * copen
+  augroup end
 ]]
 
 -- Autoformat

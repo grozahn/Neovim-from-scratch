@@ -8,9 +8,10 @@ local actions = require "telescope.actions"
 telescope.setup {
   defaults = {
 
-    prompt_prefix = " ",
-    selection_caret = " ",
+    prompt_prefix = "  ",
+    selection_caret = "► ",
     path_display = { "smart" },
+    layout_strategy = "horizontal",
 
     mappings = {
       i = {
@@ -94,3 +95,52 @@ telescope.setup {
     -- please take a look at the readme of the extension you want to configure
   },
 }
+
+-- Command aliases (mostly similar to ones from fzf.vim) 
+vim.cmd [[
+  " Buffer selection
+  command! Buf :Telescope buffers show_all_buffers=true sort_lastused=true
+
+  " Command history
+  command! Hist :Telescope command_history
+
+  " Search history
+  command! SHist :Telescope search_history
+
+  " Live grep
+  command! Rg :Telescope live_grep
+
+  " Browse files
+  command! E :Telescope file_browser
+
+  " File finder
+  command! F :Telescope find_files
+  command! Files :Telescope find_files
+
+  " Git files
+  command! GFiles :Telescope git_files
+
+  " Git status
+  command! GFStatus :Telescope git_status
+
+  " Git commits
+  command! Commits :Telescope git_commits
+
+  " Git commits for the current buffer
+  command! BCommits :Telescope git_bcommits
+
+  " Search through lines in buffer
+  command! BLines :Telescope current_buffer_fuzzy_find
+
+  " Colorscheme chooser
+  command! Colors :Telescope colorscheme
+
+  " Vim commands
+  command! Cmd :Telescope commands
+
+  " Show mappings
+  command! Maps :Telescope keymaps
+
+  " Show vim options
+  command! Opts :Telescope vim_options
+]]

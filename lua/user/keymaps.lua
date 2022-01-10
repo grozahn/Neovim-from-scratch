@@ -67,3 +67,24 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
+-- Bit quicker commands typing
+keymap('n', ';', ':', opts)
+
+-- Quick shortcut for disabling search results highlighting
+keymap('n', '<Esc><Esc>', '<Cmd>noh<CR>', opts)
+
+-- Leave cursor after the new text
+keymap('n', 'p',  'gp', opts)
+keymap('n', 'P',  'gP', opts)
+keymap('n', 'gp', 'p',  opts)
+keymap('n', 'gP', 'P',  opts)
+
+-- Search results centered please
+keymap('n', 'n',  'nzz',  opts)
+keymap('n', 'N',  'Nzz',  opts)
+keymap('n', '*',  '*zz',  opts)
+keymap('n', '#',  '#zz',  opts)
+keymap('n', 'g*', 'g*zz', opts)
+
+-- Misc
+keymap('n', '<leader>#', ':hi! link Comment', { noremap = true })

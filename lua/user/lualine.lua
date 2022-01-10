@@ -58,8 +58,22 @@ local progress = function()
 	return chars[index]
 end
 
-local spaces = function()
-	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
+local indent = function()
+	return string.format("%s %d",
+		vim.api.nvim_buf_get_option(0, "expandtab") and "⎵" or "↹",
+		vim.api.nvim_buf_get_option(0, "shiftwidth"))
+end
+
+
+-- For showing LSP progress messages
+local lsp_status = require "lsp-status"
+lsp_status.register_progress()
+
+local status = function()
+	if #vim.lsp.buf_get_clients() > 0 then
+		return lsp_status.status_progress()
+	end
+	return ""
 end
 
 lualine.setup({
@@ -72,11 +86,11 @@ lualine.setup({
 		always_divide_middle = true,
 	},
 	sections = {
-		lualine_a = { branch, diagnostics },
+		lualine_a = { branch, diff, },
 		lualine_b = { mode },
 		lualine_c = {},
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = { diff, spaces, "encoding", filetype },
+		lualine_x = { status, diagnostics, indent, "encoding", filetype },
 		lualine_y = { location },
 		lualine_z = { progress },
 	},
